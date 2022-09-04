@@ -11,6 +11,7 @@ knowDegree.innerHTML=temperature;
 document.querySelector("#paris").innerHTML = response.data.name;
 let description= document.querySelector("#description");
 description.innerHTML=response.data.weather[0].description;
+findCelsius= Math.round(response.data.main.temp);
 let imageChange=document.querySelector("#cloudy");
 imageChange.setAttribute("src",`http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`)
 }
@@ -57,3 +58,14 @@ form.addEventListener("submit",search);
         }
       let button = document.querySelector("#button");
       button.addEventListener("click", getCurrentPosition);
+      function searchTemperature(event){
+        event.preventDefault();
+       let searchCelsius=document.querySelector("#temperature");
+        let calTemperature=(findCelsius * 9)/ 5 + 32 ;
+        findCelsius.innerHTML=Math.round(callTemperature);
+
+      }
+      let findCelsius="null";
+
+      let fahren =document.querySelector("#fahren");
+      fahren.addEventListener("click",searchTemperature);
