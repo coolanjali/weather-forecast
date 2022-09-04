@@ -9,6 +9,8 @@ let temperature =Math.round(response.data.main.temp);
 let knowDegree=document.querySelector("#temperature");
 knowDegree.innerHTML=temperature;
 document.querySelector("#paris").innerHTML = response.data.name;
+let description= document.querySelector("#description");
+description.innerHTML=response.data.weather[0].description;
 let imageChange=document.querySelector("#cloudy");
 imageChange.setAttribute("src",`http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`)
 }
