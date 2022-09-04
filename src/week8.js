@@ -18,7 +18,7 @@ imageChange.setAttribute("src",`http://openweathermap.org/img/wn/${response.data
 let now =new Date();
 let minute=now.getMinutes();
 if (minute<10){
-  minute.innerHTML= `0+minute`;
+  minute.innerHTML= `0${minute}`;
 }else{
   minute.innerHTML=`minute`;
 }
@@ -60,7 +60,7 @@ form.addEventListener("submit",search);
       button.addEventListener("click", getCurrentPosition);
       function searchTemperature(event){
         event.preventDefault();
-        let calTemperature=(findCelsius * 9)/ 5 + 32 ;
+        let calTemperature=((findCelsius * 9)/ 5) + 32 ;
         let searchCelsius=document.querySelector("#temperature");
         
         searchCelsius.innerHTML=Math.round(callTemperature);

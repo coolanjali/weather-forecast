@@ -54,3 +54,8 @@ p{
     text-align: center;
     color: red;
 }
+#code{
+    text-align: center;
+    display: block;
+    margin: auto;
+}
