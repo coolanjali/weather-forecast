@@ -50,3 +50,7 @@ form {
     display: block;
     margin: auto;
 }
+p{
+    text-align: center;
+    color: red;
+}
