@@ -23,13 +23,13 @@ let minuten=document.querySelector("#minute");
 minuten.innerHTML=minute;
 function searchCity(event) {
   let apiKey = "955ec84f44a61d66fe31b6cb729c8059";
-  let city=document.querySelector("#name").value
+  let city=document.querySelector("#name");
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(callTemperature);
 }
 function search(event){
     event.preventDefault();
-    let city =document.querySelector("#some").value;
+    let city =document.querySelector("#some");
     let apiKey = "955ec84f44a61d66fe31b6cb729c8059";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(callTemperature);
