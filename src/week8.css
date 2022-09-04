@@ -44,3 +44,9 @@ form {
 .container {
     background-color: rgb(11, 122, 207);
 }
+#text{
+    text-align: center;
+    color: brown;
+    display: block;
+    margin: auto;
+}
