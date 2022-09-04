@@ -12,6 +12,11 @@ document.querySelector("#paris").innerHTML = response.data.name;
 }
 let now =new Date();
 let minute=now.getMinutes();
+if (minute<10){
+  minute.innerHTML= `0+minute`;
+}else{
+  minute.innerHTML=`minute`;
+}
 let hour=now.getHours();
 let days=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 let day=days[now.getDay()];
@@ -23,13 +28,13 @@ let minuten=document.querySelector("#minute");
 minuten.innerHTML=minute;
 function searchCity(event) {
   let apiKey = "955ec84f44a61d66fe31b6cb729c8059";
-  let city=document.querySelector("#name");
+  let city=document.querySelector("#name").value;
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(callTemperature);
 }
 function search(event){
     event.preventDefault();
-    let city =document.querySelector("#some");
+    let city =document.querySelector("#name").value;
     let apiKey = "955ec84f44a61d66fe31b6cb729c8059";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(callTemperature);
