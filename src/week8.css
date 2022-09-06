@@ -59,3 +59,9 @@ p{
     display: block;
     margin: auto;
 }
+.celsius{
+    cursor: default;
+}
+.celsius:hover{
+text-decoration: none;
+}

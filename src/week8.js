@@ -60,15 +60,19 @@ form.addEventListener("submit",search);
       button.addEventListener("click", getCurrentPosition);
       function searchTemperature(event){
         event.preventDefault();
-        let calTemperature=(findCelsius * 9/ 5) + 32 ;
+        let calTemperature=(findCelsius * 9)/ 5 + 32 ;
         let searchCelsius=document.querySelector("#temperature");
-        fahren.classList.remove("active");
-        alert("fun");
-        
         searchCelsius.innerHTML=Math.round(callTemperature);
 
       }
       let findCelsius="null";
+      function searchCelsius(event){
+        event.preventDefault();
+        let searchCelsius=document.querySelector("#temperature");
+        searchCelsius.innerHTML=Math.round(callTemperature);
+      }
 
       let fahren =document.querySelector("#fahren");
       fahren.addEventListener("click",searchTemperature);
+      let celsiusLink=document.querySelector("#celsius");
+      celsiusLink.addEventListener("click",searchConversion);
