@@ -60,8 +60,10 @@ form.addEventListener("submit",search);
       button.addEventListener("click", getCurrentPosition);
       function searchTemperature(event){
         event.preventDefault();
-        let calTemperature=((findCelsius * 9)/ 5) + 32 ;
+        let calTemperature=(findCelsius * 9/ 5) + 32 ;
         let searchCelsius=document.querySelector("#temperature");
+        fahren.classList.remove("active");
+        alert("fun");
         
         searchCelsius.innerHTML=Math.round(callTemperature);
 
