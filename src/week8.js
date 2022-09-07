@@ -1,3 +1,9 @@
+function getForecast(coordinates){
+  console.log(coordinates);
+    let apiKey = "955ec84f44a61d66fe31b6cb729c8059";
+let url=`https://api.openweathermap.org/data/2.5/weather?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+axios.get(url).then(changeForecast);
+}
 function callTemperature(response){
 let wind= Math.round(response.data.wind.speed);
 let knowWind=document.querySelector("#wind");
@@ -12,6 +18,7 @@ document.querySelector("#paris").innerHTML = response.data.name;
 let description= document.querySelector("#description");
 description.innerHTML=response.data.weather[0].description;
 findCelsius= Math.round(response.data.main.temp);
+getForecast(response.data.coord);
 let imageChange=document.querySelector("#cloudy");
 imageChange.setAttribute("src",`http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`)
 }
@@ -37,12 +44,30 @@ function searchCity(event) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(callTemperature);
 }
+
 function search(event){
     event.preventDefault();
     let city =document.querySelector("#name").value;
     let apiKey = "955ec84f44a61d66fe31b6cb729c8059";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(callTemperature);
+}
+function changeForecast(response){
+  let changeTime=document.querySelector("#projectForecast");
+  let doubleNummer=`<div class="row">`;
+  let life=["Thursday","Friday","Saturday","Sunday","Monday"];
+  life.forEach(function(day){
+  doubleNummer=doubleNummer + `<div class="col-2">
+          <div class="weather-forecast-date">Thu</div>
+          <img src="http://openweathermap.org/img/wn/50d@2x.png" alt="" width="42" />
+          <div class="weather-forecast-temperatures">
+            <span class="weather-forecast-temperature-max"> 18° </span>
+            <span class="weather-forecast-temperature-min"> 12° </span>
+          </div>
+        </div>
+      </div>`;
+  }
+      changeTime.innerHTML=doubleNummer;
 }
 let form =document.querySelector("#form");
 form.addEventListener("submit",search);
