@@ -66,7 +66,7 @@ form.addEventListener("submit",search);
 
       }
       let findCelsius="null";
-      function searchCelsius(event){
+      function searchConversion(event){
         event.preventDefault();
         let searchCelsius=document.querySelector("#temperature");
         searchCelsius.innerHTML=Math.round(callTemperature);

@@ -65,3 +65,16 @@ p{
 .celsius:hover{
 text-decoration: none;
 }
+#dayy{
+    color: beige;
+    margin-top: 20px;
+    margin-bottom: -50px;
+}
+#imagess{
+    size-adjust: 1px;
+    color: aliceblue;
+}
+#degrees{
+    color: beige;
+    margin-top: -50px;
+}
