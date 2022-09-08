@@ -53,21 +53,22 @@ function search(event){
     axios.get(apiUrl).then(callTemperature);
 }
 function changeForecast(response){
+    let forecast=response.data.daily;
   let changeTime=document.querySelector("#projectForecast");
   let doubleNummer=`<div class="row">`;
-  let life=["Thursday","Friday","Saturday","Sunday","Monday"];
-  life.forEach(function(day){
-  doubleNummer=doubleNummer + `<div class="col-2">
-          <div class="weather-forecast-date">Thu</div>
-          <img src="http://openweathermap.org/img/wn/50d@2x.png" alt="" width="42" />
+  forecast.forEach(function(forecastDay){
+  doubleNummer=doubleNummer + `<div class="col">
+          <div class="weather-forecast-date">${forecastDay.dt}</div>
+          <img src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png" alt="" width="42" />
           <div class="weather-forecast-temperatures">
-            <span class="weather-forecast-temperature-max"> 18° </span>
-            <span class="weather-forecast-temperature-min"> 12° </span>
+            <span class="weather-forecast-temperature-max">${Math.round(forecastDay.temp.max)}° </span>
+            <span class="weather-forecast-temperature-min">${Math.round(forecastDay.temp.min)}°</span>
           </div>
         </div>
       </div>`;
-  }
+      doubleNummer= doubleNummer + `</div>`;
       changeTime.innerHTML=doubleNummer;
+  }); 
 }
 let form =document.querySelector("#form");
 form.addEventListener("submit",search);
