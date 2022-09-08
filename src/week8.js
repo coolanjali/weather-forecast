@@ -53,16 +53,18 @@ function search(event){
     axios.get(apiUrl).then(callTemperature);
 }
 function changeForecast(response){
-    let forecast=response.data.daily;
+  
+  let forCast=response.data.daily;
+  console.log(response);
   let changeTime=document.querySelector("#projectForecast");
   let doubleNummer=`<div class="row">`;
-  forecast.forEach(function(forecastDay){
+  projectForecast.forEach(function(forcastDay){
   doubleNummer=doubleNummer + `<div class="col">
-          <div class="weather-forecast-date">${forecastDay.dt}</div>
-          <img src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png" alt="" width="42" />
+          <div class="weather-forecast-date">${forcastDay.dt}</div>
+          <img src="http://openweathermap.org/img/wn/${forcastDay.weather[0].icon}@2x.png" alt="" width="42" />
           <div class="weather-forecast-temperatures">
-            <span class="weather-forecast-temperature-max">${Math.round(forecastDay.temp.max)}° </span>
-            <span class="weather-forecast-temperature-min">${Math.round(forecastDay.temp.min)}°</span>
+            <span class="weather-forecast-temperature-max">${Math.round(forcastDay.temp.max)}° </span>
+            <span class="weather-forecast-temperature-min">${Math.round(forcastDay.temp.min)}°</span>
           </div>
         </div>
       </div>`;
