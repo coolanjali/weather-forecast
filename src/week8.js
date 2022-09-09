@@ -1,6 +1,6 @@
 function getForecast(coordinates){
     let apiKey = "c95d60a1e3adbeb286133f1ebebc2579";
-let url=`https://api.openweathermap.org/data/2.5/weather?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+let url =`https://api.openweathermap.org/data/2.5/forecast?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;    
 axios.get(url).then(changeForecast);
 }
 function callTemperature(response){
@@ -53,23 +53,35 @@ function search(event){
     axios.get(apiUrl).then(callTemperature);
 }
 function changeForecast(response){
-  let forCast= response.data.daily;
+  let forCast= response.data.list;
+  console.log(response);
   console.log(forCast);
   let changeTime=document.querySelector("#projectForecast");
   let doubleNummer=`<div class="row">`;
-  forCast.forEach(function(forcastDay){
+  forCast.forEach(function(forcastDay,index){
+    if (index<6){
   doubleNummer=doubleNummer + `<div class="col">
-          <div class="weather-forecast-date">${forcastDay.dt}</div>
+          <div class="weather-forecast-date">${formatDay(forcastDay.dt)}</div>
           <img src="http://openweathermap.org/img/wn/${forcastDay.weather[0].icon}@2x.png" alt="" width="42" />
           <div class="weather-forecast-temperatures">
-            <span class="weather-forecast-temperature-max">${Math.round(forcastDay.temp.max)}° </span>
-            <span class="weather-forecast-temperature-min">${Math.round(forcastDay.temp.min)}°</span>
+            <span class="weather-forecast-temperature-max">${Math.round(forcastDay.main.temp_max)}° </span>
+            <span class="weather-forecast-temperature-min">${Math.round(forcastDay.main.temp_min)}°</span>
           </div>
         </div>
       </div>`;
       doubleNummer= doubleNummer + `</div>`;
       changeTime.innerHTML=doubleNummer;
+    }
   }); 
+
+}
+function formatDay(timestamp){
+  let date= new Date(timestamp *1000);
+  let day= date.getDay();
+  let days=["Sun","Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+
+  return days[day];
+
 }
 let form =document.querySelector("#form");
 form.addEventListener("submit",search);
