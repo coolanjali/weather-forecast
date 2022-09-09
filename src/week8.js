@@ -7,6 +7,7 @@ function callTemperature(response){
 let wind= Math.round(response.data.wind.speed);
 let knowWind=document.querySelector("#wind");
 knowWind.innerHTML=wind;
+console.log(response);
 let humidity= Math.round(response.data.main.humidity);
 let knowHumidity=document.querySelector("#humidity");
 knowHumidity.innerHTML=humidity;
@@ -52,9 +53,8 @@ function search(event){
     axios.get(apiUrl).then(callTemperature);
 }
 function changeForecast(response){
-  
-  let forCast=response.data.daily;
-  console.log(response.data);
+  let forCast= response.data.daily;
+  console.log(forCast);
   let changeTime=document.querySelector("#projectForecast");
   let doubleNummer=`<div class="row">`;
   forCast.forEach(function(forcastDay){
