@@ -58,14 +58,13 @@ function changeForecast(response){
   let doubleNummer=`<div class="row">`;
   forCast.forEach(function(forcastDay,index){
     if (index>0&&index<7){
-  doubleNummer=doubleNummer + `<div class="row">
+  doubleNummer=doubleNummer + `
          <div class="col-2">
           <div class="weather-forecast-date">${formatDay(forcastDay.dt)}</div>
           <img src="http://openweathermap.org/img/wn/${forcastDay.weather[0].icon}@2x.png" alt="" width="42" />
           <div class="weather-forecast-temperatures">
             <span class="weather-forecast-temperature-max">${Math.round(forcastDay.temp.max)}° </span>
             <span class="weather-forecast-temperature-min">${Math.round(forcastDay.temp.min)}°</span>
-          </div>
           </div>
         </div>
       </div>`;
