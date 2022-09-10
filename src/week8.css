@@ -68,3 +68,8 @@ text-decoration: none;
 .weather-forecast{
     color: whitesmoke;
 }
+.col{
+    background-color: rgb(125, 175, 211);
+    color: black;
+    flex-direction: column;
+}

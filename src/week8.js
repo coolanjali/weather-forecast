@@ -1,6 +1,6 @@
 function getForecast(coordinates){
-    let apiKey = "c95d60a1e3adbeb286133f1ebebc2579";
-let url =`https://api.openweathermap.org/data/2.5/forecast?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;    
+let apiKey = "c95d60a1e3adbeb286133f1ebebc2579";
+let url=`https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
 axios.get(url).then(changeForecast);
 }
 function callTemperature(response){
@@ -53,19 +53,19 @@ function search(event){
     axios.get(apiUrl).then(callTemperature);
 }
 function changeForecast(response){
-  let forCast= response.data.list;
-  console.log(response);
-  console.log(forCast);
+  let forCast= response.data.daily;
   let changeTime=document.querySelector("#projectForecast");
   let doubleNummer=`<div class="row">`;
   forCast.forEach(function(forcastDay,index){
-    if (index<6){
-  doubleNummer=doubleNummer + `<div class="col">
+    if (index>0&&index<7){
+  doubleNummer=doubleNummer + `<div class="row">
+         <div class="col-2">
           <div class="weather-forecast-date">${formatDay(forcastDay.dt)}</div>
           <img src="http://openweathermap.org/img/wn/${forcastDay.weather[0].icon}@2x.png" alt="" width="42" />
           <div class="weather-forecast-temperatures">
-            <span class="weather-forecast-temperature-max">${Math.round(forcastDay.main.temp_max)}° </span>
-            <span class="weather-forecast-temperature-min">${Math.round(forcastDay.main.temp_min)}°</span>
+            <span class="weather-forecast-temperature-max">${Math.round(forcastDay.temp.max)}° </span>
+            <span class="weather-forecast-temperature-min">${Math.round(forcastDay.temp.min)}°</span>
+          </div>
           </div>
         </div>
       </div>`;
@@ -97,22 +97,4 @@ form.addEventListener("submit",search);
         }
       let button = document.querySelector("#button");
       button.addEventListener("click", getCurrentPosition);
-      function searchTemperature(event){
-        event.preventDefault();
-        let calTemperature=(findCelsius * 9)/ 5 + 32 ;
-        let searchCelsius=document.querySelector("#temperature");
-        searchCelsius.innerHTML=Math.round(callTemperature);
-
-      }
-      let findCelsius="null";
-      function searchConversion(event){
-        event.preventDefault();
-        let searchCelsius=document.querySelector("#temperature");
-        searchCelsius.innerHTML=Math.round(findCelsius);
-      }
-
-      let fahren =document.querySelector("#fahren");
-      fahren.addEventListener("click",searchTemperature);
-      let celsiusLink=document.querySelector("#celsius");
-      celsiusLink.addEventListener("click",searchConversion);
-      findCelsius = document.querySelector("#temperature").innerHTML;
+      
