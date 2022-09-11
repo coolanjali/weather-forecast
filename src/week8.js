@@ -55,7 +55,7 @@ function search(event){
 function changeForecast(response){
   let forCast= response.data.daily;
   let changeTime=document.querySelector("#projectForecast");
-  let doubleNummer=`<div class="row">`;
+  let doubleNummer=`<div class="row" id="forecast-weather">`;
   forCast.forEach(function(forcastDay,index){
     if (index>0&&index<7){
   doubleNummer=doubleNummer + `
@@ -66,14 +66,12 @@ function changeForecast(response){
             <span class="weather-forecast-temperature-max">${Math.round(forcastDay.temp.max)}° </span>
             <span class="weather-forecast-temperature-min">${Math.round(forcastDay.temp.min)}°</span>
           </div>
-        </div>
       </div>`;
+      }
+  }); 
       doubleNummer= doubleNummer + `</div>`;
       changeTime.innerHTML=doubleNummer;
     }
-  }); 
-
-}
 function formatDay(timestamp){
   let date= new Date(timestamp *1000);
   let day= date.getDay();

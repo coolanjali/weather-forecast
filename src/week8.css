@@ -65,7 +65,18 @@ text-decoration: none;
 .weather-forecast{
     color: whitesmoke;
 }
-.col{
-    background-color: rgb(125, 175, 211);
-    color: black;
+
+
+#col{
+    background-color: rgb(11, 128, 245);
+    border-radius: 8px;
+}
+#row{
+    border-radius: 8px;
+    background-color:rgb(11, 128, 245);
+}
+#forecast-weather{
+    padding: 20px;
+    background-color: rgb(31, 76, 159);
+    border-radius: 4px;
 }
